@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-12">
+        <h5>Itt találod a linkeket:</h5>
+        <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <div style="border-bottom: 2px solid black"><b>TÁRHELY</b></div>
+        <% for (let i = 0; i < responsePayload.sql_linkek.length; i++) { %>
+            <div style="padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid black;">
+                <br> <%= responsePayload.sql_linkek[i].tarhely %>
+            </div>
+        <% } %>
+    </div>
+    <div class="col-md-3">
+        <div style="border-bottom: 2px solid black"><b>NYELV</b></div>
+        <% for (let i = 0; i < responsePayload.sql_linkek.length; i++) { %>
+            <div style="padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid black;">
+                <br> <%= responsePayload.sql_linkek[i].nyelv %>
+            </div>
+        <% } %>
+    </div>
+    <div class="col-md-2">
+        <div style="border-bottom: 2px solid black"><b>MINŐSÉG</b></div>
+        <% for (let i = 0; i < responsePayload.sql_linkek.length; i++) { %>
+            <div style="padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid black;">
+                <br> <%= responsePayload.sql_linkek[i].minoseg %>
+            </div>
+        <% } %>
+    </div>
+    <div class="col-md-2">
+        <div style="border-bottom: 2px solid black"><b>INDÍTÁS</b></div>
+        <% for (let i = 0; i < responsePayload.sql_linkek.length; i++) { %>
+            <div style="padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid black;">
+                <br>
+                <a href=<%= responsePayload.sql_linkek[i].link %>><img src="/img/play_btn.png"
+                                                                       style="width: 40px; height: 40px"></a>
+            </div>
+        <% } %>
+    </div>
+    <div class="col-md-1">
+        <b>LIKE</b>
+    </div>
+    <div class="col-md-1">
+        <b>DISLIKE</b>
+    </div>
+</div>

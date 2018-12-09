@@ -1,0 +1,36 @@
+{
+  "name": "filmek",
+  "version": "1.0.0",
+  "description": "nein",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.3",
+    "body-parser": "*",
+    "cluster": "^0.7.7",
+    "consolidate": "*",
+    "cors": "^2.8.5",
+    "ejs": "^2.6.1",
+    "express": "*",
+    "mysql": "^2.16.0",
+    "plyr": "^3.4.7",
+    "popper": "^1.0.1",
+    "sequelize": "^4.41.2"
+  },
+  "keywords": [
+    "filmek",
+    "online",
+    "filmek",
+    "online",
+    "sorozatok",
+    "sorozarok",
+    "online",
+    "sorozatok",
+    "sorozatok"
+  ],
+  "author": "nein",
+  "license": "ISC"
+}

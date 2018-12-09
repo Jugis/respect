@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title><%=title%>online film</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Online filmek regisztráció nélkül, ingyenesen! <%= description%>" >
+    <meta name="keywords" content="<%=title%>, <%=original_title%>, <%=title%>online film, <%=original_title%> online film">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href="/img/pici2.png" rel="shortcut icon"/>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/css/owl.carousel.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <link rel="stylesheet" href="/css/animate.css"/>
+
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="ejs_production.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
+
+<!-- Header section -->
+<header class="header-section">
+    <div class="container">
+        <!-- logo -->
+        <a class="" href="/oldal/0">
+            <img src="/img/mozi4.png" alt="" style="height: 30%; width: 30%">
+        </a>
+        <div class="user-panel">
+            <a href="#">Login</a> / <a href="#">Register</a>
+        </div>
+        <!-- responsive -->
+        <div class="nav-switch">
+            <i class="fa fa-bars"></i>
+        </div>
+        <!-- site menu -->
+        <nav class="main-menu">
+            <ul>
+                <li><a href="/oldal/0">Főoldal</a></li>
+                <li><a href="/online-filmek/0">Filmek</a></li>
+                <li><a href="/online-sorozatok/0">Sorozatok</a></li>
+                <li><a href="/">Kapcsolat</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<!-- Header section end -->
+
+<div class="row" style="margin-top: 50px;">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Ide írd be a sorozat/film nevét amit keresel!" aria-label="Ide írd be a sorozat/film nevét amit keresel, az aposztrofokat hagyd ki!"
+                   aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Keresés</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+<!-- Page section -->
+<section class="page-section review-page spad">
+    <div class="container">
+        <h4> <%= title %> </h4>
+        <h8> <%= original_title %></h8>
+        <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="review-item">
+                    <div class="review-text">
+
+                        <img src= <%= image_url %> style="width: 240px; height: 400px" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="review-item">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <b>Kategória: </b>
+                            <%=               %> <br>
+                            <% if (responsePayload.sql_kat_res ) { %>
+                                <% for (let i = 0; i < responsePayload.sql_kat_res.length; i++) { %>
+                                    <% if (i == responsePayload.sql_kat_res.length - 1) { %>
+                                        <%= responsePayload.sql_kat_res[i].name %>
+                                    <% } else { %>
+                                        <%= responsePayload.sql_kat_res[i].name %>,
+                                    <% } %>
+                                <% } %>
+                            <% } %>
+                            <br><br>
+                            <b>RÖVID LEÍRÁS: </b>
+                            <p><%= description %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="col">
+                    <h5>ADATOK: </h5> <br><br>
+                    <b>Játékidő: </b><br>
+                    <p><%= play_time %> </p>
+                    <b>Rendező: </b><br>
+                    <%= dir_name %> <br><br>
+                    <b>Szereplők: </b><br>
+                    <% if (responsePayload.sql_act_res) { %>
+                        <% for (let i = 0; i < responsePayload.sql_act_res.length; i++) { %>
+                            <% if (i == responsePayload.sql_act_res.length - 1) { %>
+                                <%= responsePayload.sql_act_res[i].name %>
+                            <% } else { %>
+                                <%= responsePayload.sql_act_res[i].name %>,
+                            <% } %>
+                        <% } %>
+                    <% } %>
+                    <br><br>
+                    <p><b> TRAILER/IMDB LINKEK: </b></p>
+                    <a href=<%= trailer_url %>><img src="/img/yt2.jpg" style="width: 70px; height: 50px"></a>
+                    <a href=<%= imdb_url %>><img src="/img/imdb.jpg" style="width: 60px; height: 40px">
+                        <p><b>IMDB: <%= imdb_score %></b></p></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-md-offset-1 panel panel-default">
+                <br>
+                <div class="panel-heading"><h4>Itt találod a linkeket!</h4></div>
+                <div class="table-responsive">
+                    <table class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Tárhely</th>
+                            <th>Nyelv</th>
+                            <th>Minőség</th>
+                            <th class="text-center">Indítás</th>
+                            <th class="text-center">Hiba jelentése</th>
+                            <th>Like</th>
+                            <th>Dislike</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% let plybtn; %>
+                        <% if (responsePayload.sql_linkek) { %>
+                            <% for (let i = 0; i < responsePayload.sql_linkek.length; i++) { %>
+                                <tr>
+                                    <td><%= responsePayload.sql_linkek[i].tarhely %></td>
+                                    <td><%= responsePayload.sql_linkek[i].nyelv %></td>
+                                    <td><%= responsePayload.sql_linkek[i].minoseg %></td>
+                                    <% plybtn = 'playbtn' + i %>
+                                    <td class="text-center">
+                                        <p>
+                                            <a data-toggle="collapse" href=<%= '#' + plybtn %> role="button"
+                                               aria-expanded="false" aria-controls=>
+                                                <img src="/img/ply_btn2.png" style="width: 30px; height: 30px"
+                                                     data-toggle="collapse" data-mediatype="mv" class="clickable">
+                                            </a>
+                                        </p>
+                                        <div class="collapse" id=<%= plybtn %>>
+                                            <!-- <div class="card card-body">
+                                            <iframe id="MainPopupIframe" class="mpi embed-responsive-item"
+                                                    controls="1" frameborder="1" allowfullscreen>
+                                                <html>
+                                                <body>
+                                                <div>
+                                                <% let encoded = Buffer.from(responsePayload.sql_linkek[i].link).toString('base64');
+                                                let enc2 = 'http://localhost:3000/open/' + encoded;
+                                                %>
+                                                </div>
+                                                </body>
+                                                </html>
+
+                                            </iframe>
+                                        </div> -->
+                                            <!--<iframe id="MainPopupIframe" class="mpi embed-responsive-item" src=<%= responsePayload.sql_linkek[i].link %> controls="1" frameborder="1" allowfullscreen=""></iframe>-->
+                                            <a target="_blank" rel="noopener noreferrer" href=<%= enc2 %>><img
+                                                        src="/img/soyboy.png" height="200px" width="300px"></a>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            <% } %>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- LINKEK -->
+
+        <div class="text-center pt-4">
+            <button class="site-btn btn-sm">Load More</button>
+        </div>
+    </div>
+</section>
+<!-- Page section end -->
+
+<!-- Footer section -->
+<footer class="footer-section">
+    <div class="container">
+        <ul class="footer-menu">
+            <li><a href="/oldal/0">Főoldal</a></li>
+            <li><a href="/online-filmek/0">Filmek</a></li>
+            <li><a href="/online-sorozatok/0">Sorozatok</a></li>
+            <li><a href="/">Kapcsolat</a></li>
+        </ul>
+        <p class="copyright"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            online-mozi.com
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+    </div>
+</footer>
+<!-- Footer section end -->
+
+
+<!--====== Javascripts & Jquery ======-->
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.marquee.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
